@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://gegner.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="gegner" type="Area2D" groups=[
+"gegner",
+]]
+position = Vector2( 118.411, 412.683 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 2.82481, -2.60163 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+modulate = Color( 0.917647, 0.129412, 0.129412, 1 )
+margin_left = 15.102
+margin_top = -2.35968
+margin_right = 20.102
+margin_bottom = 2.64032
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="l1" type="Line2D" parent="." groups=[
+"gegner",
+]]
+points = PoolVector2Array( 0, 0, 300, 0 )
+width = 2.0
+
+[node name="l2" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 300, 0 )
+width = 2.0
+
+[node name="shootTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="viewField" type="Polygon2D" parent="."]
+modulate = Color( 1, 1, 1, 0.34 )
+position = Vector2( -0.288788, 0.112061 )
+polygon = PoolVector2Array( 0, 0, 300, -50, 300, 0, 300, 50 )
+
+[node name="viewArea" type="Area2D" parent="." groups=[
+"view",
+]]
+position = Vector2( -77.3977, -53.8008 )
+
+[node name="collViewField" type="CollisionPolygon2D" parent="viewArea" groups=[
+"view",
+]]
+polygon = PoolVector2Array( 77.8436, 53.6367, 378.467, 33.3434, 378.467, 56.4683, 378.939, 75.8177 )
+[connection signal="timeout" from="shootTimer" to="." method="_on_shootTimer_timeout"]
+[connection signal="area_entered" from="viewArea" to="." method="_on_viewArea_area_entered"]
+[connection signal="area_exited" from="viewArea" to="." method="_on_viewArea_area_exited"]

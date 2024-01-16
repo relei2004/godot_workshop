@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://goal_green.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.99703, 4.31919 )
+
+[node name="goal" type="Area2D" groups=[
+"goal",
+]]
+position = Vector2( 557, 196 )
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -38.0
+margin_top = -40.0
+margin_right = 42.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 5.75427, 5.50056 )
+shape = SubResource( 1 )
